@@ -15,6 +15,13 @@ namespace packageTask.Forms.LineDrawing
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            Button target = sender as Button;
+            object res;
+            object tableForm;
+
+            Boolean isDDA = target.Text == "DDA" ? true : false;
+
             float stX, stY, enX, enY;
 
             if (!validateInput(out stX, out stY, out enX, out enY))
@@ -27,19 +34,37 @@ namespace packageTask.Forms.LineDrawing
             Point p1 = new Point((int)stX, (int)stY);
             Point p2 = new Point((int)enX, (int)enY);
 
-            DDA.Result res = DDA.run(p1, p2);
+            if (isDDA)
+            {
+                res = DDA.run(p1, p2);
+                tableForm = new DDATableForm();
+            }
+            else
+            {
+                res = Bresenham.run(p1, p2);
+                tableForm = new BresenhamTableForm();
+            }
+
 
             DrawingForm drawingForm = new DrawingForm();
 
-            DDATableForm DDAOutputForm = new DDATableForm();
 
             drawingForm.Visible = true;
+            (tableForm as Form).Visible = true;
 
-            DDAOutputForm.Visible = true;
+            if (res is DDA.Result && tableForm is DDATableForm)
+            {
+                drawingForm.drawLine((res as DDA.Result).points);
 
-            drawingForm.drawLine(res.points);
+                (tableForm as DDATableForm).fillTable(res as DDA.Result);
+            }
+            else
+            {
+                drawingForm.drawLine((res as Bresenham.Result).points);
 
-            DDAOutputForm.fillTable(res);
+                (tableForm as BresenhamTableForm).fillTable(res as Bresenham.Result);
+            }
+
 
         }
 
@@ -55,35 +80,5 @@ namespace packageTask.Forms.LineDrawing
             return false;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            float stX, stY, enX, enY;
-
-
-
-            if (!validateInput(out stX, out stY, out enX, out enY))
-            {
-                Console.WriteLine("Invalid Input: Input should be a number");
-                return;
-            }
-
-
-            Point p1 = new Point((int)stX, (int)stY);
-            Point p2 = new Point((int)enX, (int)enY);
-
-            Bresenham.Result res = Bresenham.run(p1, p2);
-
-            DrawingForm drawingForm = new DrawingForm();
-
-            BresenhamTableForm BresenhamOutputForm = new BresenhamTableForm();
-
-            drawingForm.Visible = true;
-
-            BresenhamOutputForm.Visible = true;
-
-            drawingForm.drawLine(res.points);
-
-            BresenhamOutputForm.fillTable(res);
-        }
     }
 }
