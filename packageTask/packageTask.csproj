@@ -57,17 +57,11 @@
     <Compile Include="Forms\DrawingForm.Designer.cs">
       <DependentUpon>DrawingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LineDrawing\BresenhamTableForm.cs">
+    <Compile Include="Forms\LineDrawing\BresenhamTable.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LineDrawing\BresenhamTableForm.Designer.cs">
-      <DependentUpon>BresenhamTableForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\LineDrawing\DDATableForm.cs">
+    <Compile Include="Forms\LineDrawing\DDATable.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LineDrawing\DDATableForm.Designer.cs">
-      <DependentUpon>DDATableForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LineDrawing\LineDrawingForm.cs">
       <SubType>Form</SubType>
@@ -81,23 +75,26 @@
     <Compile Include="Forms\MenuFrom.Designer.cs">
       <DependentUpon>MenuFrom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TableForm.Designer.cs">
+      <DependentUpon>TableForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ScreenPoint.cs" />
     <EmbeddedResource Include="Forms\DrawingForm.resx">
       <DependentUpon>DrawingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LineDrawing\BresenhamTableForm.resx">
-      <DependentUpon>BresenhamTableForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LineDrawing\DDATableForm.resx">
-      <DependentUpon>DDATableForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LineDrawing\LineDrawingForm.resx">
       <DependentUpon>LineDrawingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MenuFrom.resx">
       <DependentUpon>MenuFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TableForm.resx">
+      <DependentUpon>TableForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

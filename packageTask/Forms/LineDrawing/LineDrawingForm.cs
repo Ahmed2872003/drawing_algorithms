@@ -18,7 +18,6 @@ namespace packageTask.Forms.LineDrawing
 
             Button target = sender as Button;
             object res;
-            object tableForm;
 
             Boolean isDDA = target.Text == "DDA" ? true : false;
 
@@ -34,37 +33,37 @@ namespace packageTask.Forms.LineDrawing
             Point p1 = new Point((int)stX, (int)stY);
             Point p2 = new Point((int)enX, (int)enY);
 
-            if (isDDA)
-            {
-                res = DDA.run(p1, p2);
-                tableForm = new DDATableForm();
-            }
-            else
-            {
-                res = Bresenham.run(p1, p2);
-                tableForm = new BresenhamTableForm();
-            }
+            if (isDDA) res = DDA.run(p1, p2);
+
+            else res = Bresenham.run(p1, p2);
+
 
 
             DrawingForm drawingForm = new DrawingForm();
 
 
             drawingForm.Visible = true;
-            (tableForm as Form).Visible = true;
 
-            if (res is DDA.Result && tableForm is DDATableForm)
+            if (res is DDA.Result)
             {
-                drawingForm.drawLine((res as DDA.Result).points, DrawingForm.Type.line);
+                DDATable DDAT = new DDATable();
+                DDAT.Visible = true;
 
-                (tableForm as DDATableForm).fillTable(res as DDA.Result);
+                drawingForm.draw((res as DDA.Result).points, DrawingForm.Type.line);
+
+                DDAT.fillTable(res);
+
             }
             else
             {
-                drawingForm.drawLine((res as Bresenham.Result).points, DrawingForm.Type.line);
+                BresenhamTable BresenhamT = new BresenhamTable();
+                BresenhamT.Visible = true;
 
-                (tableForm as BresenhamTableForm).fillTable(res as Bresenham.Result);
+                drawingForm.draw((res as Bresenham.Result).points, DrawingForm.Type.line);
+
+                BresenhamT.fillTable(res);
+
             }
-
 
         }
 

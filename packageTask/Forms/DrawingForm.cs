@@ -9,7 +9,7 @@ namespace packageTask.Forms
 {
     public partial class DrawingForm : Form
     {
-        public enum Type { line, circle, ellipse };
+        public enum Type { line, ellipse };
 
         public DrawingForm()
         {
@@ -44,7 +44,7 @@ namespace packageTask.Forms
             drawCoordinates();
         }
 
-        public void drawLine(List<PointF> points, Type type)
+        public void draw(List<PointF> points, Type type)
         {
             Graphics g = drawingPanel.CreateGraphics();
 
@@ -66,7 +66,6 @@ namespace packageTask.Forms
                     case Type.line:
                         g.FillRectangle(brush, new Rectangle((int)p.X, (int)p.Y, 3, 3));
                         break;
-                    case Type.circle:
                     case Type.ellipse:
                         g.FillEllipse(brush, new Rectangle((int)p.X, (int)p.Y, 3, 3));
                         break;
