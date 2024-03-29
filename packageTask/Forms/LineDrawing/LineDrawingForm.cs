@@ -54,13 +54,13 @@ namespace packageTask.Forms.LineDrawing
 
             if (res is DDA.Result && tableForm is DDATableForm)
             {
-                drawingForm.drawLine((res as DDA.Result).points);
+                drawingForm.drawLine((res as DDA.Result).points, DrawingForm.Type.line);
 
                 (tableForm as DDATableForm).fillTable(res as DDA.Result);
             }
             else
             {
-                drawingForm.drawLine((res as Bresenham.Result).points);
+                drawingForm.drawLine((res as Bresenham.Result).points, DrawingForm.Type.line);
 
                 (tableForm as BresenhamTableForm).fillTable(res as Bresenham.Result);
             }

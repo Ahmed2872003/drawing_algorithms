@@ -9,6 +9,8 @@ namespace packageTask.Forms
 {
     public partial class DrawingForm : Form
     {
+        public enum Type { line, circle, ellipse };
+
         public DrawingForm()
         {
             InitializeComponent();
@@ -42,7 +44,7 @@ namespace packageTask.Forms
             drawCoordinates();
         }
 
-        public void drawLine(List<PointF> points)
+        public void drawLine(List<PointF> points, Type type)
         {
             Graphics g = drawingPanel.CreateGraphics();
 
@@ -59,7 +61,13 @@ namespace packageTask.Forms
 
                 PointF p = customPoint.toUnit(drawingPanelSize);
 
-                g.FillRectangle(brush, new Rectangle((int)p.X, (int)p.Y, 3, 3));
+                switch (type)
+                {
+                    case Type.line:
+                        g.FillRectangle(brush, new Rectangle((int)p.X, (int)p.Y, 3, 3));
+                        break;
+                }
+
 
             }
 

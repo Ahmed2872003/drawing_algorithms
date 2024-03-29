@@ -53,7 +53,7 @@ namespace packageTask.DrawingAlgorithms.LineDrawing
                 res.p.Add(p.ToString());
 
                 x += xStep;
-                if (p <= 0)
+                if (p < 0)
                     p += twoDy;
                 else
                 {
