@@ -66,6 +66,10 @@ namespace packageTask.Forms
                     case Type.line:
                         g.FillRectangle(brush, new Rectangle((int)p.X, (int)p.Y, 3, 3));
                         break;
+                    case Type.circle:
+                    case Type.ellipse:
+                        g.FillEllipse(brush, new Rectangle((int)p.X, (int)p.Y, 3, 3));
+                        break;
                 }
 
 
