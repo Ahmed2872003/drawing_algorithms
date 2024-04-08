@@ -43,7 +43,6 @@ namespace packageTask.Forms
             base.OnPaint(e);
             drawCoordinates();
         }
-
         public void draw(List<PointF> points, Type type)
         {
             Graphics g = drawingPanel.CreateGraphics();

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawingAlgorithms\EllipseDrawing\Circle.cs" />
     <Compile Include="DrawingAlgorithms\LineDrawing\Bresenham.cs" />
     <Compile Include="DrawingAlgorithms\LineDrawing\DDA.cs" />
     <Compile Include="Forms\DrawingForm.cs">
@@ -56,6 +57,18 @@
     </Compile>
     <Compile Include="Forms\DrawingForm.Designer.cs">
       <DependentUpon>DrawingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EllipseDrawing\CircleTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EllipseDrawing\EllipseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EllipseDrawing\EllipseForm.Designer.cs">
+      <DependentUpon>EllipseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EllipseDrawing\EllipseTable.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\LineDrawing\BresenhamTable.cs">
       <SubType>Form</SubType>
@@ -86,6 +99,9 @@
     <Compile Include="Utils\ScreenPoint.cs" />
     <EmbeddedResource Include="Forms\DrawingForm.resx">
       <DependentUpon>DrawingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EllipseDrawing\EllipseForm.resx">
+      <DependentUpon>EllipseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LineDrawing\LineDrawingForm.resx">
       <DependentUpon>LineDrawingForm.cs</DependentUpon>
@@ -118,5 +134,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

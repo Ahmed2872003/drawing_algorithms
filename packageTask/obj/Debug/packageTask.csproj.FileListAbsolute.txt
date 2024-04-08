@@ -25,3 +25,4 @@ D:\Study\Third_Year\1\Computer graphics-1 (in process)\Project\packageTask\packa
 D:\Study\Third_Year\1\Computer graphics-1 (in process)\Project\packageTask\packageTask\obj\Debug\packageTask.exe
 D:\Study\Third_Year\1\Computer graphics-1 (in process)\Project\packageTask\packageTask\obj\Debug\packageTask.pdb
 D:\Study\Third_Year\1\Computer graphics-1 (in process)\Project\packageTask\packageTask\obj\Debug\packageTask.Forms.TableForm.resources
+D:\Study\Third_Year\1\Computer graphics-1 (in process)\Project\packageTask\packageTask\obj\Debug\packageTask.Forms.EllipseDrawing.EllipseForm.resources
