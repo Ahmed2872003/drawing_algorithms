@@ -48,7 +48,12 @@ namespace packageTask.Forms.EllipseDrawing
 
             if (isEllipseMode)
             {
-                drawEllipse();
+                if (!int.TryParse(xRadiusTB.Text, out xr) || !int.TryParse(yRadiusTB.Text, out yr))
+                {
+                    Console.WriteLine("Enter a valid xr and yr");
+                    return;
+                }
+                drawEllipse(new Point(xCenter, yCenter), xr, yr);
             }
             else
             {
@@ -78,9 +83,19 @@ namespace packageTask.Forms.EllipseDrawing
 
         }
 
-        private void drawEllipse()
+        private void drawEllipse(Point center, int rx, int ry)
         {
-            Console.WriteLine("Ellipse");
+            Ellipse.Result result = Ellipse.run(center, rx, ry);
+
+            DrawingForm DrawingForm = new DrawingForm();
+            EllipseTable ellipseTable = new EllipseTable();
+
+            DrawingForm.Visible = true;
+            ellipseTable.Visible = true;
+
+            DrawingForm.draw(result.points, DrawingForm.Type.ellipse);
+
+            ellipseTable.fillTable(result);
         }
 
 

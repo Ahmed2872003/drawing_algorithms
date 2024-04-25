@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrawingAlgorithms\EllipseDrawing\Circle.cs" />
+    <Compile Include="DrawingAlgorithms\EllipseDrawing\Ellipse.cs" />
     <Compile Include="DrawingAlgorithms\LineDrawing\Bresenham.cs" />
     <Compile Include="DrawingAlgorithms\LineDrawing\DDA.cs" />
     <Compile Include="Forms\DrawingForm.cs">

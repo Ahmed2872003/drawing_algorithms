@@ -2,7 +2,6 @@
 using System;
 using System.Windows.Forms;
 
-
 namespace packageTask
 {
     internal static class Program
@@ -13,7 +12,6 @@ namespace packageTask
         [STAThread]
         static void Main()
         {
-
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
