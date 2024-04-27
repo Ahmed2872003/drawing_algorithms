@@ -56,12 +56,21 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.scaleTrackBarX = new System.Windows.Forms.TrackBar();
+            this.shearXTB = new System.Windows.Forms.TextBox();
+            this.shearYTB = new System.Windows.Forms.TextBox();
+            this.shearCB = new System.Windows.Forms.CheckBox();
+            this.shearTrackBarY = new System.Windows.Forms.TrackBar();
+            this.shearTrackBarX = new System.Windows.Forms.TrackBar();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.transTrackBarX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transTrackBarY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.angelTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleTrackBarY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleTrackBarX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shearTrackBarY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shearTrackBarX)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -197,9 +206,9 @@
             this.tranCB.Location = new System.Drawing.Point(557, 26);
             this.tranCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tranCB.Name = "tranCB";
-            this.tranCB.Size = new System.Drawing.Size(96, 20);
+            this.tranCB.Size = new System.Drawing.Size(86, 20);
             this.tranCB.TabIndex = 14;
-            this.tranCB.Text = "Translation";
+            this.tranCB.Text = "Translate";
             this.tranCB.UseVisualStyleBackColor = true;
             this.tranCB.CheckedChanged += new System.EventHandler(this.CheckBoxListener);
             // 
@@ -209,9 +218,9 @@
             this.rotCB.Location = new System.Drawing.Point(817, 28);
             this.rotCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rotCB.Name = "rotCB";
-            this.rotCB.Size = new System.Drawing.Size(79, 20);
+            this.rotCB.Size = new System.Drawing.Size(69, 20);
             this.rotCB.TabIndex = 15;
-            this.rotCB.Text = "Rotation";
+            this.rotCB.Text = "Rotate";
             this.rotCB.UseVisualStyleBackColor = true;
             this.rotCB.CheckedChanged += new System.EventHandler(this.CheckBoxListener);
             // 
@@ -301,9 +310,9 @@
             this.scaleCB.Location = new System.Drawing.Point(557, 179);
             this.scaleCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.scaleCB.Name = "scaleCB";
-            this.scaleCB.Size = new System.Drawing.Size(74, 20);
+            this.scaleCB.Size = new System.Drawing.Size(64, 20);
             this.scaleCB.TabIndex = 26;
-            this.scaleCB.Text = "Scaling";
+            this.scaleCB.Text = "Scale";
             this.scaleCB.UseVisualStyleBackColor = true;
             this.scaleCB.CheckedChanged += new System.EventHandler(this.CheckBoxListener);
             // 
@@ -349,11 +358,90 @@
             this.scaleTrackBarX.Value = 10;
             this.scaleTrackBarX.ValueChanged += new System.EventHandler(this.Scale_trackBar_ValueChanged);
             // 
+            // shearXTB
+            // 
+            this.shearXTB.Location = new System.Drawing.Point(979, 242);
+            this.shearXTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shearXTB.Name = "shearXTB";
+            this.shearXTB.ReadOnly = true;
+            this.shearXTB.Size = new System.Drawing.Size(49, 22);
+            this.shearXTB.TabIndex = 33;
+            this.shearXTB.Text = "0";
+            // 
+            // shearYTB
+            // 
+            this.shearYTB.Location = new System.Drawing.Point(979, 292);
+            this.shearYTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shearYTB.Name = "shearYTB";
+            this.shearYTB.ReadOnly = true;
+            this.shearYTB.Size = new System.Drawing.Size(49, 22);
+            this.shearYTB.TabIndex = 32;
+            this.shearYTB.Text = "0";
+            // 
+            // shearCB
+            // 
+            this.shearCB.AutoSize = true;
+            this.shearCB.Location = new System.Drawing.Point(817, 179);
+            this.shearCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shearCB.Name = "shearCB";
+            this.shearCB.Size = new System.Drawing.Size(65, 20);
+            this.shearCB.TabIndex = 31;
+            this.shearCB.Text = "Shear";
+            this.shearCB.UseVisualStyleBackColor = true;
+            this.shearCB.CheckedChanged += new System.EventHandler(this.CheckBoxListener);
+            // 
+            // shearTrackBarY
+            // 
+            this.shearTrackBarY.Location = new System.Drawing.Point(870, 281);
+            this.shearTrackBarY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shearTrackBarY.Maximum = 20;
+            this.shearTrackBarY.Minimum = -20;
+            this.shearTrackBarY.Name = "shearTrackBarY";
+            this.shearTrackBarY.Size = new System.Drawing.Size(103, 56);
+            this.shearTrackBarY.TabIndex = 30;
+            this.shearTrackBarY.ValueChanged += new System.EventHandler(this.Shear_trackBar_ValueChanged);
+            // 
+            // shearTrackBarX
+            // 
+            this.shearTrackBarX.Location = new System.Drawing.Point(870, 234);
+            this.shearTrackBarX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shearTrackBarX.Maximum = 20;
+            this.shearTrackBarX.Minimum = -20;
+            this.shearTrackBarX.Name = "shearTrackBarX";
+            this.shearTrackBarX.Size = new System.Drawing.Size(103, 56);
+            this.shearTrackBarX.TabIndex = 29;
+            this.shearTrackBarX.ValueChanged += new System.EventHandler(this.Shear_trackBar_ValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(854, 242);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(15, 16);
+            this.label10.TabIndex = 34;
+            this.label10.Text = "X";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(854, 298);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(16, 16);
+            this.label11.TabIndex = 35;
+            this.label11.Text = "Y";
+            // 
             // TransformationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1077, 561);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.shearXTB);
+            this.Controls.Add(this.shearYTB);
+            this.Controls.Add(this.shearCB);
+            this.Controls.Add(this.shearTrackBarY);
+            this.Controls.Add(this.shearTrackBarX);
             this.Controls.Add(this.scaleXTB);
             this.Controls.Add(this.scaleYTB);
             this.Controls.Add(this.scaleCB);
@@ -393,6 +481,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.angelTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleTrackBarY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scaleTrackBarX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shearTrackBarY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shearTrackBarX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,5 +517,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TrackBar scaleTrackBarX;
+        private System.Windows.Forms.TextBox shearXTB;
+        private System.Windows.Forms.TextBox shearYTB;
+        private System.Windows.Forms.CheckBox shearCB;
+        private System.Windows.Forms.TrackBar shearTrackBarY;
+        private System.Windows.Forms.TrackBar shearTrackBarX;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

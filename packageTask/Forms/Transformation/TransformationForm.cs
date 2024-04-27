@@ -16,6 +16,7 @@ namespace packageTask.Forms.Transformation
 
         static Point prevTransP = new Point(0, 0);
         static PointF prevScale = new PointF(1f, 1f);
+        static PointF prevShear = new PointF(0f, 0f);
 
         static float prevRotateAngle = 0;
 
@@ -86,9 +87,9 @@ namespace packageTask.Forms.Transformation
 
         private Bitmap ApplyScaling(Image image, PointF S)
         {
-            Bitmap rotatedImage = new Bitmap(image.Width, image.Height);
+            Bitmap scaledImage = new Bitmap(image.Width, image.Height);
 
-            using (Graphics g = Graphics.FromImage(rotatedImage))
+            using (Graphics g = Graphics.FromImage(scaledImage))
             {
 
                 matrix.Translate(image.Width / 2, image.Height / 2);
@@ -106,8 +107,38 @@ namespace packageTask.Forms.Transformation
 
             prevScale = S;
 
-            return rotatedImage;
+            return scaledImage;
         }
+
+
+        private Bitmap ApplyShearing(Image image, PointF SH)
+        {
+            Bitmap scaledImage = new Bitmap(image.Width, image.Height);
+
+            using (Graphics g = Graphics.FromImage(scaledImage))
+            {
+
+                matrix.Translate(image.Width / 2, image.Height / 2);
+
+                matrix.Shear(-prevShear.X, -prevShear.Y);
+
+                matrix.Shear(SH.X, SH.Y);
+
+                matrix.Translate(-image.Width / 2, -image.Height / 2);
+
+                g.Transform = matrix;
+
+                g.DrawImage(image, new Point(0, 0));
+            }
+
+            prevShear = SH;
+
+
+
+            return scaledImage;
+
+        }
+
 
         private void transTrackBar_ValueChanged(object sender, System.EventArgs e)
         {
@@ -139,14 +170,17 @@ namespace packageTask.Forms.Transformation
 
             switch (transformation)
             {
-                case "Translation":
+                case "Translate":
                     transTrackBar_ValueChanged(sender, e);
                     break;
-                case "Rotation":
+                case "Rotate":
                     trackBar2_ValueChanged(sender, e);
                     break;
-                case "Scaling":
+                case "Scale":
                     Scale_trackBar_ValueChanged(sender, e);
+                    break;
+                case "Shear":
+                    Shear_trackBar_ValueChanged(sender, e);
                     break;
             }
         }
@@ -198,12 +232,31 @@ namespace packageTask.Forms.Transformation
         }
 
 
+        private void Shear_trackBar_ValueChanged(object sender, EventArgs e)
+        {
+
+
+            PointF SH = new PointF(shearTrackBarX.Value / 10f, shearTrackBarY.Value / 10f);
+
+            shearXTB.Text = SH.X.ToString();
+            shearYTB.Text = SH.Y.ToString();
+
+            if (shearCB.Checked)
+                pictureBox1.Image = ApplyShearing(image, SH);
+            else
+                pictureBox1.Image = ApplyShearing(image, new PointF(0, 0));
+        }
+
+
         private void Reset(object sender, EventArgs e)
         {
 
-            tranCB.Checked = rotCB.Checked = false;
+            tranCB.Checked = rotCB.Checked = shearCB.Checked = scaleCB.Checked = false;
 
-            angelTrackBar.Value = transTrackBarX.Value = transTrackBarY.Value = 0;
+            angelTrackBar.Value = 0;
+            transTrackBarX.Value = transTrackBarY.Value = 0;
+            shearTrackBarX.Value = shearTrackBarY.Value = 0;
+            scaleTrackBarX.Value = scaleTrackBarY.Value = 10;
 
             matrix = new Matrix();
 
