@@ -1,5 +1,6 @@
 ﻿using packageTask.Forms.EllipseDrawing;
 using packageTask.Forms.LineDrawing;
+using packageTask.Forms.Transformation;
 using System;
 using System.Windows.Forms;
 
@@ -24,6 +25,13 @@ namespace packageTask.Forms
             EllipseForm ellipseForm = new EllipseForm();
 
             ellipseForm.Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TransformationForm transformationForm = new TransformationForm();
+
+            transformationForm.Visible = true;
         }
     }
 }
