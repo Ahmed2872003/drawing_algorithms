@@ -12,6 +12,7 @@ namespace packageTask.DrawingAlgorithms.LineDrawing
             public List<PointF> points = new List<PointF>();
             public List<string> p = new List<string>();
 
+            override
             public string ToString()
             {
                 string res = "";

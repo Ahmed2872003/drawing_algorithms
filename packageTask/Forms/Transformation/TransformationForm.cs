@@ -1,7 +1,8 @@
-﻿using System;
+﻿using packageTask.DrawingAlgorithms.LineDrawing;
+using packageTask.Utils;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
 using System.Windows.Forms;
 
 namespace packageTask.Forms.Transformation
@@ -9,277 +10,125 @@ namespace packageTask.Forms.Transformation
 
     public partial class TransformationForm : Form
     {
+        readonly private DrawingForm drawingForm = new DrawingForm();
 
-        private Image image;
+        readonly private Graphics drawingPanelG;
 
-        private Matrix matrix = new Matrix();
+        readonly private PointF[] defTrianglePoints = new PointF[] {
+            new PointF(-50, 0),
+            new PointF(50, 0),
+            new PointF(0, 75)
+        };
 
-        static Point prevTransP = new Point(0, 0);
-        static PointF prevScale = new PointF(1f, 1f);
-        static PointF prevShear = new PointF(0f, 0f);
+        readonly private PointF[] trianglePoints = new PointF[3];
 
-        static float prevRotateAngle = 0;
+        private Point prevTranslate = new Point(0, 0);
 
         public TransformationForm()
         {
+            defTrianglePoints.CopyTo(trianglePoints, 0);
+
             InitializeComponent();
+            drawingPanel.Paint += InitialDisplay;
 
-            string imagePath = Path.GetFullPath("../../assets/supertriangle.png");
-
-            textBox1.Text = imagePath;
-
-            LoadImage(imagePath);
+            drawingPanelG = drawingPanel.CreateGraphics();
         }
 
-        private void LoadImage(string imagePath)
+        private List<List<PointF>> DrawTriangle()
         {
 
-            this.image = Image.FromFile(imagePath);
+            Size panelS = drawingPanel.Size;
+            Pen b = new Pen(Color.LawnGreen, 2);
 
-            pictureBox1.Image = image;
+            PointF p1 = CustomPoint.convertToUnit(trianglePoints[0], panelS);
+            PointF p2 = CustomPoint.convertToUnit(trianglePoints[1], panelS);
+            PointF p3 = CustomPoint.convertToUnit(trianglePoints[2], panelS);
 
-        }
+            drawingPanelG.DrawLine(b, p1, p2);
+            drawingPanelG.DrawLine(b, p1, p3);
+            drawingPanelG.DrawLine(b, p2, p3);
 
-        private Bitmap ApplyTranslation(Image image, Point T)
-        {
-            Bitmap transformedImage = new Bitmap(image.Width, image.Height);
+            p1 = trianglePoints[0];
+            p2 = trianglePoints[1];
+            p3 = trianglePoints[2];
 
-            using (Graphics g = Graphics.FromImage(transformedImage))
+
+            return new List<List<PointF>>
             {
+                DDA.run(p1, p2).points,
+                DDA.run(p1, p3).points,
+                DDA.run(p2, p3).points
+            };
 
-                matrix.Translate(-prevTransP.X, -prevTransP.Y);
+        }
 
-                matrix.Translate(T.X, T.Y);
+        // 2D Transformations
+        private void ApplyTranslate(Point T)
+        {
+            for (int i = 0; i < trianglePoints.Length; i++)
+            {
+                ref PointF p = ref trianglePoints[i];
 
-                g.Transform = matrix;
-                g.DrawImage(image, new Point(0, 0));
+
+                // back to origin to origin
+                p.X -= prevTranslate.X;
+                p.Y -= prevTranslate.Y;
+
+                // Apply translation
+                p.X += T.X;
+                p.Y += T.Y;
             }
 
-            prevTransP.X = T.X;
-            prevTransP.Y = T.Y;
+            prevTranslate = T;
 
-            return transformedImage;
         }
 
-        private Bitmap ApplyRotation(Image image, float angle)
+        // Events
+        private void drawBtn_Click(object sender, EventArgs e)
         {
-            Bitmap rotatedImage = new Bitmap(image.Width, image.Height);
+            bool transformChecked = false;
 
-            using (Graphics g = Graphics.FromImage(rotatedImage))
+            if (TRB.Checked)
             {
-                matrix.Translate(image.Width / 2, image.Height / 2);
+                Point T = new Point(TTBX.Value, TTBY.Value);
 
-                matrix.Rotate(-prevRotateAngle);
+                ApplyTranslate(T);
 
-                matrix.Rotate(angle);
-
-                matrix.Translate(-image.Width / 2, -image.Height / 2);
-
-                g.Transform = matrix;
-
-                g.DrawImage(image, new Point(0, 0));
+                transformChecked = true;
             }
 
-            prevRotateAngle = angle;
-
-            return rotatedImage;
-        }
-
-        private Bitmap ApplyScaling(Image image, PointF S)
-        {
-            Bitmap scaledImage = new Bitmap(image.Width, image.Height);
-
-            using (Graphics g = Graphics.FromImage(scaledImage))
+            if (transformChecked)
             {
+                drawingPanelG.Clear(Color.White);
 
-                matrix.Translate(image.Width / 2, image.Height / 2);
+                drawingForm.drawCoordinates(ref drawingPanel);
 
-                matrix.Scale(1 / prevScale.X, 1 / prevScale.Y);
+                TransformTable TT = new TransformTable();
 
-                matrix.Scale(S.X, S.Y);
+                TT.Visible = true;
 
-                matrix.Translate(-image.Width / 2, -image.Height / 2);
+                TT.fillTable(DrawTriangle());
 
-                g.Transform = matrix;
 
-                g.DrawImage(image, new Point(0, 0));
-            }
 
-            prevScale = S;
 
-            return scaledImage;
-        }
-
-
-        private Bitmap ApplyShearing(Image image, PointF SH)
-        {
-            Bitmap scaledImage = new Bitmap(image.Width, image.Height);
-
-            using (Graphics g = Graphics.FromImage(scaledImage))
-            {
-
-                matrix.Translate(image.Width / 2, image.Height / 2);
-
-                matrix.Shear(-prevShear.X, -prevShear.Y);
-
-                matrix.Shear(SH.X, SH.Y);
-
-                matrix.Translate(-image.Width / 2, -image.Height / 2);
-
-                g.Transform = matrix;
-
-                g.DrawImage(image, new Point(0, 0));
-            }
-
-            prevShear = SH;
-
-
-
-            return scaledImage;
-
-        }
-
-
-        private void transTrackBar_ValueChanged(object sender, System.EventArgs e)
-        {
-
-            tranXTB.Text = transTrackBarX.Value.ToString();
-            tranYTB.Text = transTrackBarY.Value.ToString();
-
-            if (tranCB.Checked)
-                pictureBox1.Image = ApplyTranslation(image, new Point(transTrackBarX.Value, transTrackBarY.Value));
-
-            else
-                pictureBox1.Image = ApplyTranslation(image, new Point(0, 0));
-
-        }
-
-
-        private void CheckBoxListener(object sender, System.EventArgs e)
-        {
-
-            CheckBox targetCB = (sender as CheckBox);
-
-            string transformation = targetCB.Text;
-
-
-            if (!listBox1.Items.Contains(transformation) && targetCB.Checked) listBox1.Items.Add(transformation);
-
-            else if (listBox1.Items.Contains(transformation) && !targetCB.Checked) listBox1.Items.Remove(transformation);
-
-
-            switch (transformation)
-            {
-                case "Translate":
-                    transTrackBar_ValueChanged(sender, e);
-                    break;
-                case "Rotate":
-                    trackBar2_ValueChanged(sender, e);
-                    break;
-                case "Scale":
-                    Scale_trackBar_ValueChanged(sender, e);
-                    break;
-                case "Shear":
-                    Shear_trackBar_ValueChanged(sender, e);
-                    break;
-            }
-        }
-
-
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg; *.jpeg; *.png; *.gif; *.bmp|All files (*.*)|*.*";
-            openFileDialog.FilterIndex = 1;
-
-            DialogResult result = openFileDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                image = Image.FromFile(openFileDialog.FileName);
-
-                pictureBox1.Image = image;
-
-                textBox1.Text = openFileDialog.FileName;
-
-                Reset(null, null);
-            }
-        }
-
-
-        private void trackBar2_ValueChanged(object sender, EventArgs e)
-        {
-            degreeTB.Text = angelTrackBar.Value + "°";
-
-            if (rotCB.Checked)
-                pictureBox1.Image = ApplyRotation(image, angelTrackBar.Value);
-            else
-                pictureBox1.Image = ApplyRotation(image, 0);
-        }
-        private void Scale_trackBar_ValueChanged(object sender, EventArgs e)
-        {
-            PointF S = new PointF(scaleTrackBarX.Value / 10f, scaleTrackBarY.Value / 10f);
-
-            scaleYTB.Text = S.Y.ToString();
-            scaleXTB.Text = S.X.ToString();
-
-            if (scaleCB.Checked)
-                pictureBox1.Image = ApplyScaling(image, S);
-            else
-                pictureBox1.Image = ApplyScaling(image, new PointF(1, 1));
-        }
-
-
-        private void Shear_trackBar_ValueChanged(object sender, EventArgs e)
-        {
-
-
-            PointF SH = new PointF(shearTrackBarX.Value / 10f, shearTrackBarY.Value / 10f);
-
-            shearXTB.Text = SH.X.ToString();
-            shearYTB.Text = SH.Y.ToString();
-
-            if (shearCB.Checked)
-                pictureBox1.Image = ApplyShearing(image, SH);
-            else
-                pictureBox1.Image = ApplyShearing(image, new PointF(0, 0));
-        }
-
-
-        private void Reset(object sender, EventArgs e)
-        {
-
-            tranCB.Checked = rotCB.Checked = shearCB.Checked = scaleCB.Checked = false;
-
-            angelTrackBar.Value = 0;
-            transTrackBarX.Value = transTrackBarY.Value = 0;
-            shearTrackBarX.Value = shearTrackBarY.Value = 0;
-            scaleTrackBarX.Value = scaleTrackBarY.Value = 10;
-
-            matrix = new Matrix();
-
-            listBox1.Items.Clear();
-
-            pictureBox1.BackColor = Color.White;
-
-            pictureBox1.Image = image;
-        }
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorDialog = new ColorDialog();
-
-            DialogResult res = colorDialog.ShowDialog();
-
-            if (res == DialogResult.OK)
-            {
-                pictureBox1.BackColor = colorDialog.Color;
             }
 
 
+        }
+
+        private void TranslateChanged(object sender, EventArgs e)
+        {
+            tTxtBX.Text = TTBX.Value.ToString();
+            tTxtBY.Text = TTBY.Value.ToString();
+        }
+
+        private void InitialDisplay(object sender, EventArgs e)
+        {
+            Console.WriteLine("Hey");
+            drawingForm.drawCoordinates(ref drawingPanel);
+            DrawTriangle();
+            drawingPanel.Paint -= InitialDisplay;
         }
 
     }

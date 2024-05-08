@@ -22,7 +22,7 @@ namespace packageTask.Forms
             Console.WriteLine("(" + this.Width + ", " + this.Height + ")");
 
         }
-        private void drawCoordinates()
+        public void drawCoordinates(ref Panel drawingPanel)
         {
             Graphics g = drawingPanel.CreateGraphics();
             float width = drawingPanel.Width;
@@ -41,7 +41,7 @@ namespace packageTask.Forms
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            drawCoordinates();
+            drawCoordinates(ref drawingPanel);
         }
         public void draw(List<PointF> points, Type type)
         {
@@ -56,7 +56,7 @@ namespace packageTask.Forms
                 int x = (int)Math.Round(point.X);
                 int y = (int)Math.Round(point.Y);
 
-                ScreenPoint customPoint = new ScreenPoint(x, y);
+                CustomPoint customPoint = new CustomPoint(x, y);
 
                 PointF p = customPoint.toUnit(drawingPanelSize);
 

@@ -47,5 +47,13 @@ namespace packageTask.DrawingAlgorithms.LineDrawing
 
             return res;
         }
+
+        public static Result run(PointF p1, PointF p2)
+        {
+            return run(new Point((int)p1.X, (int)p1.Y), new Point((int)p2.X, (int)p2.Y));
+        }
+
+
+
     }
 }

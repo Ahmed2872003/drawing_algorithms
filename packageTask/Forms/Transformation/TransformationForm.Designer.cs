@@ -20,7 +20,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -28,501 +27,137 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.transTrackBarX = new System.Windows.Forms.TrackBar();
+            this.drawingPanel = new System.Windows.Forms.Panel();
+            this.TTBX = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
+            this.TTBY = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
-            this.transTrackBarY = new System.Windows.Forms.TrackBar();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.angelTrackBar = new System.Windows.Forms.TrackBar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.degreeTB = new System.Windows.Forms.TextBox();
-            this.tranCB = new System.Windows.Forms.CheckBox();
-            this.rotCB = new System.Windows.Forms.CheckBox();
-            this.resetBtn = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.tranYTB = new System.Windows.Forms.TextBox();
-            this.tranXTB = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.scaleXTB = new System.Windows.Forms.TextBox();
-            this.scaleYTB = new System.Windows.Forms.TextBox();
-            this.scaleCB = new System.Windows.Forms.CheckBox();
-            this.scaleTrackBarY = new System.Windows.Forms.TrackBar();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.scaleTrackBarX = new System.Windows.Forms.TrackBar();
-            this.shearXTB = new System.Windows.Forms.TextBox();
-            this.shearYTB = new System.Windows.Forms.TextBox();
-            this.shearCB = new System.Windows.Forms.CheckBox();
-            this.shearTrackBarY = new System.Windows.Forms.TrackBar();
-            this.shearTrackBarX = new System.Windows.Forms.TrackBar();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.transTrackBarX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transTrackBarY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.angelTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scaleTrackBarY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scaleTrackBarX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shearTrackBarY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shearTrackBarX)).BeginInit();
+            this.tTxtBY = new System.Windows.Forms.TextBox();
+            this.tTxtBX = new System.Windows.Forms.TextBox();
+            this.drawBtn = new System.Windows.Forms.Button();
+            this.TRB = new System.Windows.Forms.RadioButton();
+            ((System.ComponentModel.ISupportInitialize)(this.TTBX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TTBY)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // drawingPanel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(547, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 16);
-            this.label1.TabIndex = 1;
+            this.drawingPanel.BackColor = System.Drawing.Color.White;
+            this.drawingPanel.Location = new System.Drawing.Point(651, 12);
+            this.drawingPanel.Name = "drawingPanel";
+            this.drawingPanel.Size = new System.Drawing.Size(740, 633);
+            this.drawingPanel.TabIndex = 0;
             // 
-            // transTrackBarX
+            // TTBX
             // 
-            this.transTrackBarX.Location = new System.Drawing.Point(575, 81);
-            this.transTrackBarX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.transTrackBarX.Maximum = 200;
-            this.transTrackBarX.Minimum = -200;
-            this.transTrackBarX.Name = "transTrackBarX";
-            this.transTrackBarX.Size = new System.Drawing.Size(103, 56);
-            this.transTrackBarX.TabIndex = 2;
-            this.transTrackBarX.ValueChanged += new System.EventHandler(this.transTrackBar_ValueChanged);
+            this.TTBX.LargeChange = 1;
+            this.TTBX.Location = new System.Drawing.Point(53, 47);
+            this.TTBX.Maximum = 370;
+            this.TTBX.Minimum = -370;
+            this.TTBX.Name = "TTBX";
+            this.TTBX.Size = new System.Drawing.Size(104, 56);
+            this.TTBX.TabIndex = 2;
+            this.TTBX.ValueChanged += new System.EventHandler(this.TranslateChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(559, 92);
+            this.label2.Location = new System.Drawing.Point(294, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(15, 16);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "X";
+            this.label2.Size = new System.Drawing.Size(16, 16);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Y";
+            // 
+            // TTBY
+            // 
+            this.TTBY.LargeChange = 1;
+            this.TTBY.Location = new System.Drawing.Point(316, 47);
+            this.TTBY.Maximum = 316;
+            this.TTBY.Minimum = -316;
+            this.TTBY.Name = "TTBY";
+            this.TTBY.Size = new System.Drawing.Size(104, 56);
+            this.TTBY.TabIndex = 4;
+            this.TTBY.ValueChanged += new System.EventHandler(this.TranslateChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(559, 139);
+            this.label3.Location = new System.Drawing.Point(32, 50);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(16, 16);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Y";
+            this.label3.Size = new System.Drawing.Size(15, 16);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "X";
             // 
-            // transTrackBarY
+            // tTxtBY
             // 
-            this.transTrackBarY.Location = new System.Drawing.Point(575, 128);
-            this.transTrackBarY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.transTrackBarY.Maximum = 200;
-            this.transTrackBarY.Minimum = -200;
-            this.transTrackBarY.Name = "transTrackBarY";
-            this.transTrackBarY.Size = new System.Drawing.Size(103, 56);
-            this.transTrackBarY.TabIndex = 6;
-            this.transTrackBarY.ValueChanged += new System.EventHandler(this.transTrackBar_ValueChanged);
+            this.tTxtBY.BackColor = System.Drawing.Color.White;
+            this.tTxtBY.Enabled = false;
+            this.tTxtBY.Location = new System.Drawing.Point(426, 50);
+            this.tTxtBY.Name = "tTxtBY";
+            this.tTxtBY.Size = new System.Drawing.Size(46, 22);
+            this.tTxtBY.TabIndex = 7;
+            this.tTxtBY.Text = "0";
             // 
-            // pictureBox1
+            // tTxtBX
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(529, 505);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.tTxtBX.BackColor = System.Drawing.Color.White;
+            this.tTxtBX.Enabled = false;
+            this.tTxtBX.Location = new System.Drawing.Point(163, 50);
+            this.tTxtBX.Name = "tTxtBX";
+            this.tTxtBX.Size = new System.Drawing.Size(49, 22);
+            this.tTxtBX.TabIndex = 8;
+            this.tTxtBX.Text = "0";
             // 
-            // button1
+            // drawBtn
             // 
-            this.button1.Location = new System.Drawing.Point(104, 523);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 30);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Select";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.drawBtn.Location = new System.Drawing.Point(35, 603);
+            this.drawBtn.Name = "drawBtn";
+            this.drawBtn.Size = new System.Drawing.Size(75, 23);
+            this.drawBtn.TabIndex = 9;
+            this.drawBtn.Text = "Draw";
+            this.drawBtn.UseVisualStyleBackColor = true;
+            this.drawBtn.Click += new System.EventHandler(this.drawBtn_Click);
             // 
-            // label4
+            // TRB
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 530);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 16);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Select image";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(195, 527);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(347, 22);
-            this.textBox1.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(827, 92);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 16);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Angle";
-            // 
-            // angelTrackBar
-            // 
-            this.angelTrackBar.Location = new System.Drawing.Point(870, 81);
-            this.angelTrackBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.angelTrackBar.Maximum = 360;
-            this.angelTrackBar.Minimum = -360;
-            this.angelTrackBar.Name = "angelTrackBar";
-            this.angelTrackBar.Size = new System.Drawing.Size(103, 56);
-            this.angelTrackBar.TabIndex = 11;
-            this.angelTrackBar.ValueChanged += new System.EventHandler(this.trackBar2_ValueChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(912, 29);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(0, 16);
-            this.label7.TabIndex = 10;
-            // 
-            // degreeTB
-            // 
-            this.degreeTB.Location = new System.Drawing.Point(979, 89);
-            this.degreeTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.degreeTB.Name = "degreeTB";
-            this.degreeTB.ReadOnly = true;
-            this.degreeTB.Size = new System.Drawing.Size(49, 22);
-            this.degreeTB.TabIndex = 13;
-            this.degreeTB.Text = "0°";
-            // 
-            // tranCB
-            // 
-            this.tranCB.AutoSize = true;
-            this.tranCB.Location = new System.Drawing.Point(557, 26);
-            this.tranCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tranCB.Name = "tranCB";
-            this.tranCB.Size = new System.Drawing.Size(86, 20);
-            this.tranCB.TabIndex = 14;
-            this.tranCB.Text = "Translate";
-            this.tranCB.UseVisualStyleBackColor = true;
-            this.tranCB.CheckedChanged += new System.EventHandler(this.CheckBoxListener);
-            // 
-            // rotCB
-            // 
-            this.rotCB.AutoSize = true;
-            this.rotCB.Location = new System.Drawing.Point(817, 28);
-            this.rotCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rotCB.Name = "rotCB";
-            this.rotCB.Size = new System.Drawing.Size(69, 20);
-            this.rotCB.TabIndex = 15;
-            this.rotCB.Text = "Rotate";
-            this.rotCB.UseVisualStyleBackColor = true;
-            this.rotCB.CheckedChanged += new System.EventHandler(this.CheckBoxListener);
-            // 
-            // resetBtn
-            // 
-            this.resetBtn.Location = new System.Drawing.Point(981, 487);
-            this.resetBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(84, 30);
-            this.resetBtn.TabIndex = 16;
-            this.resetBtn.Text = "Reset";
-            this.resetBtn.UseVisualStyleBackColor = true;
-            this.resetBtn.Click += new System.EventHandler(this.Reset);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(547, 389);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(515, 84);
-            this.listBox1.TabIndex = 17;
-            // 
-            // tranYTB
-            // 
-            this.tranYTB.Location = new System.Drawing.Point(684, 139);
-            this.tranYTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tranYTB.Name = "tranYTB";
-            this.tranYTB.ReadOnly = true;
-            this.tranYTB.Size = new System.Drawing.Size(49, 22);
-            this.tranYTB.TabIndex = 18;
-            this.tranYTB.Text = "0";
-            // 
-            // tranXTB
-            // 
-            this.tranXTB.Location = new System.Drawing.Point(684, 89);
-            this.tranXTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tranXTB.Name = "tranXTB";
-            this.tranXTB.ReadOnly = true;
-            this.tranXTB.Size = new System.Drawing.Size(49, 22);
-            this.tranXTB.TabIndex = 19;
-            this.tranXTB.Text = "0";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(544, 359);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 16);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Transformation order";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(550, 487);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 30);
-            this.button2.TabIndex = 21;
-            this.button2.Text = "Color";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // scaleXTB
-            // 
-            this.scaleXTB.Location = new System.Drawing.Point(684, 242);
-            this.scaleXTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.scaleXTB.Name = "scaleXTB";
-            this.scaleXTB.ReadOnly = true;
-            this.scaleXTB.Size = new System.Drawing.Size(49, 22);
-            this.scaleXTB.TabIndex = 28;
-            this.scaleXTB.Text = "1";
-            // 
-            // scaleYTB
-            // 
-            this.scaleYTB.Location = new System.Drawing.Point(684, 292);
-            this.scaleYTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.scaleYTB.Name = "scaleYTB";
-            this.scaleYTB.ReadOnly = true;
-            this.scaleYTB.Size = new System.Drawing.Size(49, 22);
-            this.scaleYTB.TabIndex = 27;
-            this.scaleYTB.Text = "1";
-            // 
-            // scaleCB
-            // 
-            this.scaleCB.AutoSize = true;
-            this.scaleCB.Location = new System.Drawing.Point(557, 179);
-            this.scaleCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.scaleCB.Name = "scaleCB";
-            this.scaleCB.Size = new System.Drawing.Size(64, 20);
-            this.scaleCB.TabIndex = 26;
-            this.scaleCB.Text = "Scale";
-            this.scaleCB.UseVisualStyleBackColor = true;
-            this.scaleCB.CheckedChanged += new System.EventHandler(this.CheckBoxListener);
-            // 
-            // scaleTrackBarY
-            // 
-            this.scaleTrackBarY.Location = new System.Drawing.Point(575, 281);
-            this.scaleTrackBarY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.scaleTrackBarY.Maximum = 20;
-            this.scaleTrackBarY.Minimum = 1;
-            this.scaleTrackBarY.Name = "scaleTrackBarY";
-            this.scaleTrackBarY.Size = new System.Drawing.Size(103, 56);
-            this.scaleTrackBarY.TabIndex = 25;
-            this.scaleTrackBarY.Value = 10;
-            this.scaleTrackBarY.ValueChanged += new System.EventHandler(this.Scale_trackBar_ValueChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(559, 292);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(16, 16);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "Y";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(559, 245);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(15, 16);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "X";
-            // 
-            // scaleTrackBarX
-            // 
-            this.scaleTrackBarX.Location = new System.Drawing.Point(575, 234);
-            this.scaleTrackBarX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.scaleTrackBarX.Maximum = 20;
-            this.scaleTrackBarX.Minimum = 1;
-            this.scaleTrackBarX.Name = "scaleTrackBarX";
-            this.scaleTrackBarX.Size = new System.Drawing.Size(103, 56);
-            this.scaleTrackBarX.TabIndex = 22;
-            this.scaleTrackBarX.Value = 10;
-            this.scaleTrackBarX.ValueChanged += new System.EventHandler(this.Scale_trackBar_ValueChanged);
-            // 
-            // shearXTB
-            // 
-            this.shearXTB.Location = new System.Drawing.Point(979, 242);
-            this.shearXTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.shearXTB.Name = "shearXTB";
-            this.shearXTB.ReadOnly = true;
-            this.shearXTB.Size = new System.Drawing.Size(49, 22);
-            this.shearXTB.TabIndex = 33;
-            this.shearXTB.Text = "0";
-            // 
-            // shearYTB
-            // 
-            this.shearYTB.Location = new System.Drawing.Point(979, 292);
-            this.shearYTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.shearYTB.Name = "shearYTB";
-            this.shearYTB.ReadOnly = true;
-            this.shearYTB.Size = new System.Drawing.Size(49, 22);
-            this.shearYTB.TabIndex = 32;
-            this.shearYTB.Text = "0";
-            // 
-            // shearCB
-            // 
-            this.shearCB.AutoSize = true;
-            this.shearCB.Location = new System.Drawing.Point(817, 179);
-            this.shearCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.shearCB.Name = "shearCB";
-            this.shearCB.Size = new System.Drawing.Size(65, 20);
-            this.shearCB.TabIndex = 31;
-            this.shearCB.Text = "Shear";
-            this.shearCB.UseVisualStyleBackColor = true;
-            this.shearCB.CheckedChanged += new System.EventHandler(this.CheckBoxListener);
-            // 
-            // shearTrackBarY
-            // 
-            this.shearTrackBarY.Location = new System.Drawing.Point(870, 281);
-            this.shearTrackBarY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.shearTrackBarY.Maximum = 20;
-            this.shearTrackBarY.Minimum = -20;
-            this.shearTrackBarY.Name = "shearTrackBarY";
-            this.shearTrackBarY.Size = new System.Drawing.Size(103, 56);
-            this.shearTrackBarY.TabIndex = 30;
-            this.shearTrackBarY.ValueChanged += new System.EventHandler(this.Shear_trackBar_ValueChanged);
-            // 
-            // shearTrackBarX
-            // 
-            this.shearTrackBarX.Location = new System.Drawing.Point(870, 234);
-            this.shearTrackBarX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.shearTrackBarX.Maximum = 20;
-            this.shearTrackBarX.Minimum = -20;
-            this.shearTrackBarX.Name = "shearTrackBarX";
-            this.shearTrackBarX.Size = new System.Drawing.Size(103, 56);
-            this.shearTrackBarX.TabIndex = 29;
-            this.shearTrackBarX.ValueChanged += new System.EventHandler(this.Shear_trackBar_ValueChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(854, 242);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(15, 16);
-            this.label10.TabIndex = 34;
-            this.label10.Text = "X";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(854, 298);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(16, 16);
-            this.label11.TabIndex = 35;
-            this.label11.Text = "Y";
+            this.TRB.AutoSize = true;
+            this.TRB.Location = new System.Drawing.Point(25, 12);
+            this.TRB.Name = "TRB";
+            this.TRB.Size = new System.Drawing.Size(85, 20);
+            this.TRB.TabIndex = 10;
+            this.TRB.TabStop = true;
+            this.TRB.Text = "Translate";
+            this.TRB.UseVisualStyleBackColor = true;
             // 
             // TransformationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 561);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.shearXTB);
-            this.Controls.Add(this.shearYTB);
-            this.Controls.Add(this.shearCB);
-            this.Controls.Add(this.shearTrackBarY);
-            this.Controls.Add(this.shearTrackBarX);
-            this.Controls.Add(this.scaleXTB);
-            this.Controls.Add(this.scaleYTB);
-            this.Controls.Add(this.scaleCB);
-            this.Controls.Add(this.scaleTrackBarY);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.scaleTrackBarX);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.tranXTB);
-            this.Controls.Add(this.tranYTB);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.resetBtn);
-            this.Controls.Add(this.rotCB);
-            this.Controls.Add(this.tranCB);
-            this.Controls.Add(this.degreeTB);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.angelTrackBar);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.transTrackBarY);
+            this.ClientSize = new System.Drawing.Size(1403, 657);
+            this.Controls.Add(this.TRB);
+            this.Controls.Add(this.drawBtn);
+            this.Controls.Add(this.tTxtBX);
+            this.Controls.Add(this.tTxtBY);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.transTrackBarX);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Controls.Add(this.TTBY);
+            this.Controls.Add(this.TTBX);
+            this.Controls.Add(this.drawingPanel);
             this.Name = "TransformationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TransformationForm";
-            ((System.ComponentModel.ISupportInitialize)(this.transTrackBarX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transTrackBarY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.angelTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scaleTrackBarY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scaleTrackBarX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shearTrackBarY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shearTrackBarX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TTBX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TTBY)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TrackBar transTrackBarX;
+        private System.Windows.Forms.Panel drawingPanel;
+        private System.Windows.Forms.TrackBar TTBX;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TrackBar TTBY;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TrackBar transTrackBarY;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TrackBar angelTrackBar;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox degreeTB;
-        private System.Windows.Forms.CheckBox tranCB;
-        private System.Windows.Forms.CheckBox rotCB;
-        private System.Windows.Forms.Button resetBtn;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox tranYTB;
-        private System.Windows.Forms.TextBox tranXTB;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox scaleXTB;
-        private System.Windows.Forms.TextBox scaleYTB;
-        private System.Windows.Forms.CheckBox scaleCB;
-        private System.Windows.Forms.TrackBar scaleTrackBarY;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TrackBar scaleTrackBarX;
-        private System.Windows.Forms.TextBox shearXTB;
-        private System.Windows.Forms.TextBox shearYTB;
-        private System.Windows.Forms.CheckBox shearCB;
-        private System.Windows.Forms.TrackBar shearTrackBarY;
-        private System.Windows.Forms.TrackBar shearTrackBarX;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tTxtBY;
+        private System.Windows.Forms.TextBox tTxtBX;
+        private System.Windows.Forms.Button drawBtn;
+        private System.Windows.Forms.RadioButton TRB;
     }
 }
