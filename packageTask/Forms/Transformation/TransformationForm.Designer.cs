@@ -456,6 +456,7 @@
             this.Controls.Add(this.drawingPanel);
             this.Name = "TransformationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "2D Transformation";
             ((System.ComponentModel.ISupportInitialize)(this.TTBX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TTBY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RTBTheta)).EndInit();
