@@ -18,14 +18,17 @@ namespace packageTask.Forms.Transformation
             new PointF(-50, 0),
             new PointF(50, 0),
             new PointF(0, 120)
-        };
+        }; // Defalut Points
 
         readonly private PointF[] trianglePoints = new PointF[3];
+
+        private enum Reflection { Origin, x_axis, y_axis };
 
         // Previous Transformations
         private Point prevTranslation = new Point(0, 0);
         private int prevRotation = 0;
         private PointF prevScaling = new PointF(1.0f, 1.0f);
+        private Point prevShearing = new Point(0, 0);
 
         TransformTable TT = null;
 
@@ -39,11 +42,11 @@ namespace packageTask.Forms.Transformation
             drawingPanelG = drawingPanel.CreateGraphics();
         }
 
-        private List<List<PointF>> DrawTriangle()
+        private List<List<PointF>> DrawTriangle(PointF[] trianglePoints, Color c)
         {
 
             Size panelS = drawingPanel.Size;
-            Pen b = new Pen(Color.LawnGreen, 2);
+            Pen b = new Pen(c, 2);
 
             PointF p1 = CustomPoint.convertToUnit(trianglePoints[0], panelS);
             PointF p2 = CustomPoint.convertToUnit(trianglePoints[1], panelS);
@@ -68,11 +71,11 @@ namespace packageTask.Forms.Transformation
         }
 
         // 2D Transformations
-        private void ApplyTranslation(Point T)
+        private void ApplyTranslation(PointF[] shape, Point T)
         {
-            for (int i = 0; i < trianglePoints.Length; i++)
+            for (int i = 0; i < shape.Length; i++)
             {
-                ref PointF p = ref trianglePoints[i];
+                ref PointF p = ref shape[i];
 
 
                 // back to origin to origin
@@ -92,15 +95,15 @@ namespace packageTask.Forms.Transformation
             p.Y += T.Y;
         }
 
-        private void ApplyRotation(int theta)
+        private void ApplyRotation(PointF[] shape, int theta)
         {
             Point originalT = prevTranslation;
             // back to origin
-            ApplyTranslation(new Point(0, 0));
+            ApplyTranslation(shape, new Point(0, 0));
 
-            for (int i = 0; i < trianglePoints.Length; i++)
+            for (int i = 0; i < shape.Length; i++)
             {
-                ref PointF p = ref trianglePoints[i];
+                ref PointF p = ref shape[i];
 
 
 
@@ -115,7 +118,7 @@ namespace packageTask.Forms.Transformation
             }
 
             // take back the point to the original position
-            ApplyTranslation(originalT);
+            ApplyTranslation(shape, originalT);
 
 
             prevRotation = theta;
@@ -133,7 +136,9 @@ namespace packageTask.Forms.Transformation
 
         private void ApplyScaling(PointF S)
         {
-            ApplyTranslation(new Point(0, 0));
+            Point originalT = prevTranslation;
+
+            ApplyTranslation(trianglePoints, new Point(0, 0));
 
             for (int i = 0; i < trianglePoints.Length; i++)
             {
@@ -144,7 +149,7 @@ namespace packageTask.Forms.Transformation
 
             }
 
-            ApplyTranslation(prevTranslation);
+            ApplyTranslation(trianglePoints, originalT);
 
             prevScaling = S;
         }
@@ -154,28 +159,104 @@ namespace packageTask.Forms.Transformation
             p.Y *= S.Y;
         }
 
+        private void ApplyShearing(Point SC)
+        {
+            Point preT = prevTranslation;
+
+            ApplyTranslation(trianglePoints, new Point(0, 0));
+
+            for (int i = 0; i < trianglePoints.Length; i++)
+            {
+
+
+
+                ShearPoint(ref trianglePoints[i], new Point(-prevShearing.X, -prevShearing.Y));
+
+                ShearPoint(ref trianglePoints[i], SC);
+
+
+
+            }
+
+            ApplyTranslation(trianglePoints, preT);
+
+
+            prevShearing = SC;
+        }
+
+        private void ShearPoint(ref PointF p, Point SC)
+        {
+            float oldX = p.X;
+
+            p.X += SC.X * p.Y;
+            p.Y += SC.Y * oldX;
+        }
+
+        private PointF[] ApplyReflection(Reflection reflectionType)
+        {
+            PointF[] reflectedTriangle = new PointF[3];
+
+            Point preT = prevTranslation;
+            int preR = prevRotation;
+            int signx = 1;
+            int signy = 1;
+
+            trianglePoints.CopyTo(reflectedTriangle, 0);
+
+            switch (reflectionType)
+            {
+                case Reflection.Origin:
+                    signx = signy = -1;
+                    break;
+                case Reflection.x_axis:
+                    signy = -1;
+                    break;
+                case Reflection.y_axis:
+                    signx = -1;
+                    break;
+            }
+            ApplyTranslation(reflectedTriangle, new Point(signx * prevTranslation.X, signy * prevTranslation.Y));
+
+            if (reflectionType == Reflection.Origin || reflectionType == Reflection.x_axis)
+                ApplyRotation(reflectedTriangle, 180 + prevRotation);
+
+            // get back the previous values of original triangle
+            prevTranslation = preT;
+            prevRotation = preR;
+
+            return reflectedTriangle;
+        }
+
+
+
+
+
         // Events
         private void drawBtn_Click(object sender, EventArgs e)
         {
             bool transformChecked = false;
+            bool reflectionChecked = false;
+
+
+            PointF[] reflectedTriangle = new PointF[3];
 
             if (TRB.Checked)
             {
                 Point T = new Point(TTBX.Value, TTBY.Value);
 
-                ApplyTranslation(T);
+                ApplyTranslation(trianglePoints, T);
 
                 transformChecked = true;
             }
 
-            if (RRB.Checked)
+            else if (RRB.Checked)
             {
-                ApplyRotation(-RTBTheta.Value);
+                ApplyRotation(trianglePoints, -RTBTheta.Value);
 
                 transformChecked = true;
             }
 
-            if (SRB.Checked)
+            else if (SRB.Checked)
             {
                 float sx = STBX.Value != 0 ? STBX.Value : 1;
                 float sy = STBY.Value != 0 ? STBY.Value : 1;
@@ -186,12 +267,34 @@ namespace packageTask.Forms.Transformation
                 transformChecked = true;
             }
 
+            else if (SCRB.Checked)
+            {
+                ApplyShearing(new Point(SCTBX.Value, SCTBY.Value));
+
+                transformChecked = true;
+            }
+
+            else if (RFRB.Checked && (RORB.Checked || RXRB.Checked || RYRB.Checked))
+            {
+                Reflection reflectionType =
+                    RORB.Checked ?
+                    Reflection.Origin :
+                    RXRB.Checked ?
+                    Reflection.x_axis :
+                    Reflection.y_axis;
+
+                ApplyReflection(reflectionType).CopyTo(reflectedTriangle, 0);
+
+                reflectionChecked = true;
+                transformChecked = true;
+            }
 
             if (transformChecked)
             {
                 drawingPanelG.Clear(Color.White);
-
                 drawingForm.drawCoordinates(ref drawingPanel);
+
+
 
                 if (TT == null || TT.IsDisposed)
                 {
@@ -200,11 +303,15 @@ namespace packageTask.Forms.Transformation
                 }
                 else TT.DGV.Rows.Clear();
 
+                TT.fillTable(DrawTriangle(trianglePoints, Color.LawnGreen));
 
-                TT.fillTable(DrawTriangle());
 
+                if (reflectionChecked)
+                    TT.fillTable(DrawTriangle(reflectedTriangle, Color.Black));
 
             }
+
+
 
 
         }
@@ -225,13 +332,30 @@ namespace packageTask.Forms.Transformation
             sTxtBX.Text = (STBX.Value / 20f).ToString();
             sTxtBY.Text = (STBY.Value / 20f).ToString();
         }
+
+        private void ShearingChanged(object sender, EventArgs e)
+        {
+            scTxtBX.Text = SCTBX.Value.ToString();
+            scTxtBY.Text = SCTBY.Value.ToString();
+        }
         private void InitialDisplay(object sender, EventArgs e)
         {
             drawingForm.drawCoordinates(ref drawingPanel);
-            DrawTriangle();
+            DrawTriangle(trianglePoints, Color.LawnGreen);
             drawingPanel.Paint -= InitialDisplay;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RORB.Checked = RXRB.Checked = RYRB.Checked = false;
+        }
 
+        private void resetBTN_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+
+            new TransformationForm().Visible = true;
+
+        }
     }
 }

@@ -47,11 +47,28 @@
             this.label5 = new System.Windows.Forms.Label();
             this.STBY = new System.Windows.Forms.TrackBar();
             this.STBX = new System.Windows.Forms.TrackBar();
+            this.SCTBX = new System.Windows.Forms.TrackBar();
+            this.SCRB = new System.Windows.Forms.RadioButton();
+            this.scTxtBX = new System.Windows.Forms.TextBox();
+            this.scTxtBY = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.SCTBY = new System.Windows.Forms.TrackBar();
+            this.ReflectionGroup = new System.Windows.Forms.GroupBox();
+            this.RORB = new System.Windows.Forms.RadioButton();
+            this.RXRB = new System.Windows.Forms.RadioButton();
+            this.RYRB = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
+            this.RFRB = new System.Windows.Forms.RadioButton();
+            this.resetBTN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.TTBX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TTBY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RTBTheta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.STBY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.STBX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SCTBX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SCTBY)).BeginInit();
+            this.ReflectionGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // drawingPanel
@@ -257,9 +274,166 @@
             this.STBX.Value = 20;
             this.STBX.ValueChanged += new System.EventHandler(this.ScaleChanged);
             // 
+            // SCTBX
+            // 
+            this.SCTBX.LargeChange = 1;
+            this.SCTBX.Location = new System.Drawing.Point(53, 332);
+            this.SCTBX.Maximum = 6;
+            this.SCTBX.Minimum = -6;
+            this.SCTBX.Name = "SCTBX";
+            this.SCTBX.Size = new System.Drawing.Size(104, 56);
+            this.SCTBX.TabIndex = 32;
+            this.SCTBX.ValueChanged += new System.EventHandler(this.ShearingChanged);
+            // 
+            // SCRB
+            // 
+            this.SCRB.AutoSize = true;
+            this.SCRB.Location = new System.Drawing.Point(25, 297);
+            this.SCRB.Name = "SCRB";
+            this.SCRB.Size = new System.Drawing.Size(64, 20);
+            this.SCRB.TabIndex = 31;
+            this.SCRB.TabStop = true;
+            this.SCRB.Text = "Shear";
+            this.SCRB.UseVisualStyleBackColor = true;
+            // 
+            // scTxtBX
+            // 
+            this.scTxtBX.BackColor = System.Drawing.Color.White;
+            this.scTxtBX.Enabled = false;
+            this.scTxtBX.Location = new System.Drawing.Point(163, 335);
+            this.scTxtBX.Name = "scTxtBX";
+            this.scTxtBX.Size = new System.Drawing.Size(49, 22);
+            this.scTxtBX.TabIndex = 30;
+            this.scTxtBX.Text = "0";
+            // 
+            // scTxtBY
+            // 
+            this.scTxtBY.BackColor = System.Drawing.Color.White;
+            this.scTxtBY.Enabled = false;
+            this.scTxtBY.Location = new System.Drawing.Point(426, 335);
+            this.scTxtBY.Name = "scTxtBY";
+            this.scTxtBY.Size = new System.Drawing.Size(46, 22);
+            this.scTxtBY.TabIndex = 29;
+            this.scTxtBY.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(32, 335);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 16);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "X";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(294, 335);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(16, 16);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "Y";
+            // 
+            // SCTBY
+            // 
+            this.SCTBY.LargeChange = 1;
+            this.SCTBY.Location = new System.Drawing.Point(316, 332);
+            this.SCTBY.Maximum = 6;
+            this.SCTBY.Minimum = -6;
+            this.SCTBY.Name = "SCTBY";
+            this.SCTBY.Size = new System.Drawing.Size(104, 56);
+            this.SCTBY.TabIndex = 26;
+            this.SCTBY.ValueChanged += new System.EventHandler(this.ShearingChanged);
+            // 
+            // ReflectionGroup
+            // 
+            this.ReflectionGroup.Controls.Add(this.button1);
+            this.ReflectionGroup.Controls.Add(this.RYRB);
+            this.ReflectionGroup.Controls.Add(this.RXRB);
+            this.ReflectionGroup.Controls.Add(this.RORB);
+            this.ReflectionGroup.Location = new System.Drawing.Point(53, 410);
+            this.ReflectionGroup.Name = "ReflectionGroup";
+            this.ReflectionGroup.Size = new System.Drawing.Size(367, 100);
+            this.ReflectionGroup.TabIndex = 37;
+            this.ReflectionGroup.TabStop = false;
+            // 
+            // RORB
+            // 
+            this.RORB.AutoSize = true;
+            this.RORB.Location = new System.Drawing.Point(6, 32);
+            this.RORB.Name = "RORB";
+            this.RORB.Size = new System.Drawing.Size(63, 20);
+            this.RORB.TabIndex = 0;
+            this.RORB.TabStop = true;
+            this.RORB.Text = "Origin";
+            this.RORB.UseVisualStyleBackColor = true;
+            // 
+            // RXRB
+            // 
+            this.RXRB.AutoSize = true;
+            this.RXRB.Location = new System.Drawing.Point(123, 32);
+            this.RXRB.Name = "RXRB";
+            this.RXRB.Size = new System.Drawing.Size(64, 20);
+            this.RXRB.TabIndex = 1;
+            this.RXRB.TabStop = true;
+            this.RXRB.Text = "X-axis";
+            this.RXRB.UseVisualStyleBackColor = true;
+            // 
+            // RYRB
+            // 
+            this.RYRB.AutoSize = true;
+            this.RYRB.Location = new System.Drawing.Point(244, 32);
+            this.RYRB.Name = "RYRB";
+            this.RYRB.Size = new System.Drawing.Size(65, 20);
+            this.RYRB.TabIndex = 2;
+            this.RYRB.TabStop = true;
+            this.RYRB.Text = "Y-axis";
+            this.RYRB.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(263, 71);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Uncheck";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // RFRB
+            // 
+            this.RFRB.AutoSize = true;
+            this.RFRB.Location = new System.Drawing.Point(25, 394);
+            this.RFRB.Name = "RFRB";
+            this.RFRB.Size = new System.Drawing.Size(70, 20);
+            this.RFRB.TabIndex = 38;
+            this.RFRB.TabStop = true;
+            this.RFRB.Text = "Reflect";
+            this.RFRB.UseVisualStyleBackColor = true;
+            // 
+            // resetBTN
+            // 
+            this.resetBTN.Location = new System.Drawing.Point(570, 603);
+            this.resetBTN.Name = "resetBTN";
+            this.resetBTN.Size = new System.Drawing.Size(75, 23);
+            this.resetBTN.TabIndex = 39;
+            this.resetBTN.Text = "Reset";
+            this.resetBTN.UseVisualStyleBackColor = true;
+            this.resetBTN.Click += new System.EventHandler(this.resetBTN_Click);
+            // 
             // TransformationForm
             // 
             this.ClientSize = new System.Drawing.Size(1403, 657);
+            this.Controls.Add(this.resetBTN);
+            this.Controls.Add(this.RFRB);
+            this.Controls.Add(this.ReflectionGroup);
+            this.Controls.Add(this.SCTBX);
+            this.Controls.Add(this.SCRB);
+            this.Controls.Add(this.scTxtBX);
+            this.Controls.Add(this.scTxtBY);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.SCTBY);
             this.Controls.Add(this.STBX);
             this.Controls.Add(this.SRB);
             this.Controls.Add(this.sTxtBX);
@@ -287,6 +461,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.RTBTheta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.STBY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.STBX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SCTBX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SCTBY)).EndInit();
+            this.ReflectionGroup.ResumeLayout(false);
+            this.ReflectionGroup.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,5 +490,19 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TrackBar STBY;
         private System.Windows.Forms.TrackBar STBX;
+        private System.Windows.Forms.TrackBar SCTBX;
+        private System.Windows.Forms.RadioButton SCRB;
+        private System.Windows.Forms.TextBox scTxtBX;
+        private System.Windows.Forms.TextBox scTxtBY;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TrackBar SCTBY;
+        private System.Windows.Forms.GroupBox ReflectionGroup;
+        private System.Windows.Forms.RadioButton RYRB;
+        private System.Windows.Forms.RadioButton RXRB;
+        private System.Windows.Forms.RadioButton RORB;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RadioButton RFRB;
+        private System.Windows.Forms.Button resetBTN;
     }
 }
