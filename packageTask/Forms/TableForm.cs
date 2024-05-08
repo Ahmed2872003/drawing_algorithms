@@ -8,6 +8,9 @@ namespace packageTask.Forms
         public TableForm()
         {
             InitializeComponent();
+
+            Deactivate += BringToFront;
+
         }
 
         public void InitializeTable(List<string> columns)
@@ -22,5 +25,10 @@ namespace packageTask.Forms
 
 
         abstract public void fillTable(object res);
+
+        private void BringToFront(object sender, System.EventArgs e)
+        {
+            TopMost = true;
+        }
     }
 }

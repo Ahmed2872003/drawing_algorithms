@@ -34,22 +34,23 @@
             // 
             // DGV
             // 
-            this.DGV.AccessibleRole = System.Windows.Forms.AccessibleRole.Equation;
+            this.DGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGV.Location = new System.Drawing.Point(0, 0);
+            this.DGV.Location = new System.Drawing.Point(3, 2);
             this.DGV.Name = "DGV";
-            this.DGV.ReadOnly = true;
             this.DGV.RowHeadersWidth = 51;
             this.DGV.RowTemplate.Height = 24;
-            this.DGV.Size = new System.Drawing.Size(800, 450);
-            this.DGV.TabIndex = 1;
+            this.DGV.Size = new System.Drawing.Size(649, 357);
+            this.DGV.TabIndex = 0;
             // 
             // TableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(654, 361);
             this.Controls.Add(this.DGV);
             this.Name = "TableForm";
             this.Text = "TableForm";
